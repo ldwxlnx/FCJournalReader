@@ -63,6 +63,9 @@ public class FCJStaXParser extends IXMLParser {
 					case "occs":
 						parseRoles(currFeature, attribCount);
 						break;
+					case "td":
+						parseTanglingDegree(currFeature);						
+						break;
 					// ROLE
 					case "occ": {
 						IXMLParser.overwriteProgressLine(++role_n, super.projStats.role_count,
@@ -81,7 +84,7 @@ public class FCJStaXParser extends IXMLParser {
 				} // case XMLStreamConstants.START_ELEMENT:
 				case XMLStreamConstants.END_ELEMENT:
 					break;
-				// FEATURE EXPR
+				// FEATURE EXPR //TODO not longer working since TD was added
 				case XMLStreamConstants.CDATA:
 				case XMLStreamConstants.CHARACTERS:
 					parseFeatureExpr(currFeature);
@@ -156,6 +159,12 @@ public class FCJStaXParser extends IXMLParser {
 	private void parseFeatureExpr(Feature currFeature) {
 		if (!xmlParser.isWhiteSpace()) {
 			currFeature.featureExpr = xmlParser.getText();
+		}
+	}
+	
+	private void parseTanglingDegree(Feature currFeature) throws NumberFormatException, XMLStreamException {
+		if (!xmlParser.isWhiteSpace()) {
+			currFeature.tanglingDegree = Integer.parseInt(xmlParser.getElementText());
 		}
 	}
 	

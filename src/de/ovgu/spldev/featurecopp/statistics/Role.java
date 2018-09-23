@@ -13,13 +13,14 @@ public class Role {
 	public static final char CSV_DELIM = ';';
 	public static class Feature implements Comparable<Feature> {
 		// @formatter:off
-		public static final String OUT_HEAD = "EXPR" + CSV_DELIM + "FID" + CSV_DELIM + "REQ";
+		public static final String OUT_HEAD = "EXPR" + CSV_DELIM + "TD" + CSV_DELIM + "FID" + CSV_DELIM + "REQ";
 		// @formatter:on
 		public String toString() {
-			return featureExpr + CSV_DELIM + fuid + CSV_DELIM + (isRequested ? 1 : 0);
+			return featureExpr + + CSV_DELIM + tanglingDegree + CSV_DELIM + fuid + CSV_DELIM + (isRequested ? 1 : 0);
 		}
 		// FEATURE
 		public String featureExpr;
+		public int tanglingDegree;
 		public long fuid;
 		public boolean isRequested;
 		public long role_count;

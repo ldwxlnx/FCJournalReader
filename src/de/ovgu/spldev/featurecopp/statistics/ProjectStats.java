@@ -95,7 +95,7 @@ public class ProjectStats {
 		sb.append(String.format("%" + max_places_rank + "s %"
 				+ max_places_role_count + "s[%" + max_places_role_count + "s/%"
 				+ max_places_role_count + "s/%" + max_places_role_count + "s/%"
-				+ max_places_role_count + "s] %6s r [expr]"
+				+ max_places_role_count + "s] %6s r td [expr]"
 				+ Configuration.LINESEP, "#", "R", ".h", ".c", "D", "V", "ID"));
 
 		for (int i = 0; i < features.size(); i++) {
@@ -108,9 +108,9 @@ public class ProjectStats {
 					+ max_places_role_count + "d[%" + max_places_role_count
 					+ "d/%" + max_places_role_count + "d/%"
 					+ max_places_role_count + "d/%" + max_places_role_count
-					+ "d] %6d %d [%s]" + Configuration.LINESEP, (i + 1),
+					+ "d] %6d %c %2d [%s]" + Configuration.LINESEP, (i + 1),
 					curr.role_count, curr.header_occs, curr.impl_occs, curr.dead_role_count, curr.valid_role_count,
-					curr.fuid, curr.isRequested ? 1 : 0, curr.featureExpr));
+					curr.fuid, curr.isRequested ? 'Y' : 'N', curr.tanglingDegree, curr.featureExpr));
 		}
 	}
 
