@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcreport>
+ <stats if="1" ifdef="21" ifndef="1" ifXtotal="23" elif="0" else="3" endif="23" textsize="20512"/>
+ <features count="8" requested="8" roles="26">
+  <feature uid="5" file="/home/miniztree/C-Development/CList_split/___FeatureCoPP_modules/5.fcp" requested="true">
+   <expr><![CDATA[defined(HAVE_DL)]]></expr>
+   <sem_avg PSPOT="0.44" CS="0.33" ER="0.12" funcdefs="0.2" totaldecls="2.5" funcdecls="0.4" structdecls="0.0" vardecls="1.8" symtotal="3.1" symbound="1.2" symunbound="1.9" stmts="7.2" exprs="7.5" funcalls="6.5" cppdir="0.0" include="0.0" comments="1.1" />
+   <sem_dev PSPOT="0.38" CS="0.20" ER="0.28" funcdefs="0.5" totaldecls="3.3" funcdecls="0.7" structdecls="0.0" vardecls="2.7" symtotal="6.8" symbound="2.7" symunbound="4.4" stmts="20.5" exprs="21.4" funcalls="24.6" cppdir="0.0" include="0.0" comments="1.3" />
+   <occs count="17" dead="0" valid="17">
+    <occ id="5" status="valid" file="/home/miniztree/C-Development/CList/include/List.h" keyword="#ifdef" encl_occ_id="3" begin="36" end="39">
+     <semantics PSPOT="0.48" CS="0.48" ER="0.00" funcdefs="0.0" totaldecls="1.0" funcdecls="0.0" structdecls="0.0" vardecls="1.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="1.0"/>
+    </occ>
+    <occ id="6" status="valid" file="/home/miniztree/C-Development/CList/include/List.h" keyword="#ifdef" encl_occ_id="3" begin="59" end="62">
+     <semantics PSPOT="0.48" CS="0.48" ER="0.00" funcdefs="0.0" totaldecls="1.0" funcdecls="0.0" structdecls="0.0" vardecls="1.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="1.0"/>
+    </occ>
+    <occ id="7" status="valid" file="/home/miniztree/C-Development/CList/include/List.h" keyword="#ifdef" encl_occ_id="3" begin="110" end="119">
+     <semantics PSPOT="0.57" CS="0.57" ER="0.00" funcdefs="0.0" totaldecls="2.0" funcdecls="1.0" structdecls="0.0" vardecls="1.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="2.0"/>
+    </occ>
+    <occ id="8" status="valid" file="/home/miniztree/C-Development/CList/include/List.h" keyword="#ifdef" encl_occ_id="3" begin="138" end="151">
+     <semantics PSPOT="0.58" CS="0.58" ER="0.00" funcdefs="0.0" totaldecls="5.0" funcdecls="2.0" structdecls="0.0" vardecls="3.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="2.0"/>
+    </occ>
+    <occ id="9" status="valid" file="/home/miniztree/C-Development/CList/include/List.h" keyword="#ifdef" encl_occ_id="3" begin="160" end="168">
+     <semantics PSPOT="0.58" CS="0.58" ER="0.00" funcdefs="0.0" totaldecls="5.0" funcdecls="2.0" structdecls="0.0" vardecls="3.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="1.0"/>
+    </occ>
+    <occ id="11" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="12" end="14">
+     <semantics PSPOT="0.16" CS="0.16" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="1.0" symbound="0.0" symunbound="1.0" stmts="1.0" exprs="1.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+    <occ id="12" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="22" end="24">
+     <semantics PSPOT="0.16" CS="0.16" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="1.0" symbound="0.0" symunbound="1.0" stmts="1.0" exprs="1.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+    <occ id="13" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="42" end="44">
+     <semantics PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="1.0" symbound="0.0" symunbound="1.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+    <occ id="14" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="57" end="64">
+     <semantics PSPOT="0.57" CS="0.57" ER="0.00" funcdefs="0.0" totaldecls="3.0" funcdecls="1.0" structdecls="0.0" vardecls="2.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="4.0"/>
+    </occ>
+    <occ id="15" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="72" end="74">
+     <semantics PSPOT="0.16" CS="0.16" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="1.0" symbound="0.0" symunbound="1.0" stmts="1.0" exprs="1.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+    <occ id="16" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="87" end="95">
+     <semantics PSPOT="0.16" CS="0.16" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="1.0" symbound="0.0" symunbound="1.0" stmts="3.0" exprs="3.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="2.0"/>
+    </occ>
+    <occ id="17" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="114" end="117">
+     <semantics PSPOT="0.16" CS="0.16" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="2.0" symbound="0.0" symunbound="2.0" stmts="2.0" exprs="2.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+    <occ id="18" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="122" end="124">
+     <semantics PSPOT="0.16" CS="0.16" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="2.0" symbound="0.0" symunbound="2.0" stmts="1.0" exprs="1.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+    <occ id="19" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="131" end="167">
+     <semantics PSPOT="1.01" CS="0.34" ER="0.67" funcdefs="2.0" totaldecls="8.0" funcdecls="0.0" structdecls="0.0" vardecls="6.0" symtotal="9.0" symbound="6.0" symunbound="3.0" stmts="21.0" exprs="21.0" funcalls="4.0" cppdir="0.0" include="0.0" comments="1.0"/>
+    </occ>
+    <occ id="20" status="valid" file="/home/miniztree/C-Development/CList/src/List.c" keyword="#ifdef" encl_occ_id="0" begin="176" end="185">
+     <semantics PSPOT="1.60" CS="0.60" ER="1.00" funcdefs="1.0" totaldecls="6.0" funcdecls="1.0" structdecls="0.0" vardecls="4.0" symtotal="4.0" symbound="4.0" symunbound="0.0" stmts="4.0" exprs="5.0" funcalls="1.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+    <occ id="23" status="valid" file="/home/miniztree/C-Development/CList/src/main.c" keyword="#ifdef" encl_occ_id="0" begin="56" end="170">
+     <semantics PSPOT="0.57" CS="0.22" ER="0.34" funcdefs="1.0" totaldecls="11.0" funcdecls="0.0" structdecls="0.0" vardecls="10.0" symtotal="29.0" symbound="10.0" symunbound="19.0" stmts="87.0" exprs="91.0" funcalls="105.0" cppdir="0.0" include="0.0" comments="4.0"/>
+    </occ>
+    <occ id="25" status="valid" file="/home/miniztree/C-Development/CList/src/main.c" keyword="#ifdef" encl_occ_id="0" begin="277" end="279">
+     <semantics PSPOT="0.16" CS="0.16" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="2.0" symbound="0.0" symunbound="2.0" stmts="1.0" exprs="1.0" funcalls="1.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+   </occs>
+  </feature>
+  <feature uid="4" file="/home/miniztree/C-Development/CList_split/___FeatureCoPP_modules/4.fcp" requested="true">
+   <expr><![CDATA[defined(__cplusplus)]]></expr>
+   <sem_avg PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0" />
+   <sem_dev PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0" />
+   <occs count="2" dead="0" valid="2">
+    <occ id="4" status="valid" file="/home/miniztree/C-Development/CList/include/List.h" keyword="#ifdef" encl_occ_id="3" begin="25" end="27">
+     <semantics PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+    <occ id="10" status="valid" file="/home/miniztree/C-Development/CList/include/List.h" keyword="#ifdef" encl_occ_id="3" begin="170" end="172">
+     <semantics PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+   </occs>
+  </feature>
+  <feature uid="8" file="/home/miniztree/C-Development/CList_split/___FeatureCoPP_modules/8.fcp" requested="true">
+   <expr><![CDATA[!defined(HAVE_DL)]]></expr>
+   <sem_avg PSPOT="0.37" CS="0.20" ER="0.17" funcdefs="0.5" totaldecls="4.5" funcdecls="0.0" structdecls="0.0" vardecls="4.0" symtotal="12.5" symbound="4.0" symunbound="8.5" stmts="29.5" exprs="31.0" funcalls="35.0" cppdir="0.0" include="0.0" comments="3.0" />
+   <sem_dev PSPOT="0.21" CS="0.04" ER="0.17" funcdefs="0.5" totaldecls="4.5" funcdecls="0.0" structdecls="0.0" vardecls="4.0" symtotal="10.5" symbound="4.0" symunbound="6.5" stmts="28.5" exprs="30.0" funcalls="34.0" cppdir="0.0" include="0.0" comments="3.0" />
+   <occs count="2" dead="0" valid="2">
+    <occ id="24" status="valid" file="/home/miniztree/C-Development/CList/src/main.c" keyword="#else" encl_occ_id="0" begin="170" end="257">
+     <semantics PSPOT="0.58" CS="0.24" ER="0.35" funcdefs="1.0" totaldecls="9.0" funcdecls="0.0" structdecls="0.0" vardecls="8.0" symtotal="23.0" symbound="8.0" symunbound="15.0" stmts="58.0" exprs="61.0" funcalls="69.0" cppdir="0.0" include="0.0" comments="6.0"/>
+    </occ>
+    <occ id="26" status="valid" file="/home/miniztree/C-Development/CList/src/main.c" keyword="#else" encl_occ_id="0" begin="279" end="281">
+     <semantics PSPOT="0.16" CS="0.16" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="2.0" symbound="0.0" symunbound="2.0" stmts="1.0" exprs="1.0" funcalls="1.0" cppdir="0.0" include="0.0" comments="0.0"/>
+    </occ>
+   </occs>
+  </feature>
+  <feature uid="3" file="/home/miniztree/C-Development/CList_split/___FeatureCoPP_modules/3.fcp" requested="true">
+   <expr><![CDATA[!defined(LIST_H)]]></expr>
+   <sem_avg PSPOT="0.60" CS="0.60" ER="0.00" funcdefs="0.0" totaldecls="39.0" funcdecls="12.0" structdecls="2.0" vardecls="25.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="19.0" include="2.0" comments="27.0" />
+   <sem_dev PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0" />
+   <occs count="1" dead="0" valid="1">
+    <occ id="3" status="valid" file="/home/miniztree/C-Development/CList/include/List.h" keyword="#ifndef" encl_occ_id="0" begin="8" end="174">
+     <semantics PSPOT="0.60" CS="0.60" ER="0.00" funcdefs="0.0" totaldecls="39.0" funcdecls="12.0" structdecls="2.0" vardecls="25.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="19.0" include="2.0" comments="27.0"/>
+    </occ>
+   </occs>
+  </feature>
+  <feature uid="1" file="/home/miniztree/C-Development/CList_split/___FeatureCoPP_modules/1.fcp" requested="true">
+   <expr><![CDATA[defined(_STDC_C99)]]></expr>
+   <sem_avg PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="6.0" include="6.0" comments="6.0" />
+   <sem_dev PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0" />
+   <occs count="1" dead="0" valid="1">
+    <occ id="1" status="valid" file="/home/miniztree/C-Development/CList/nbproject/private/c_standard_headers_indexer.c" keyword="#ifdef" encl_occ_id="0" begin="61" end="68">
+     <semantics PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="6.0" include="6.0" comments="6.0"/>
+    </occ>
+   </occs>
+  </feature>
+  <feature uid="2" file="/home/miniztree/C-Development/CList_split/___FeatureCoPP_modules/2.fcp" requested="true">
+   <expr><![CDATA[defined(_STDC_C11)]]></expr>
+   <sem_avg PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="5.0" include="5.0" comments="5.0" />
+   <sem_dev PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0" />
+   <occs count="1" dead="0" valid="1">
+    <occ id="2" status="valid" file="/home/miniztree/C-Development/CList/nbproject/private/c_standard_headers_indexer.c" keyword="#ifdef" encl_occ_id="0" begin="69" end="75">
+     <semantics PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="5.0" include="5.0" comments="5.0"/>
+    </occ>
+   </occs>
+  </feature>
+  <feature uid="7" file="/home/miniztree/C-Development/CList_split/___FeatureCoPP_modules/7.fcp" requested="true">
+   <expr><![CDATA[!defined(WIN32)]]></expr>
+   <sem_avg PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="1.0" include="0.0" comments="0.0" />
+   <sem_dev PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0" />
+   <occs count="1" dead="0" valid="1">
+    <occ id="22" status="valid" file="/home/miniztree/C-Development/CList/src/main.c" keyword="#else" encl_occ_id="0" begin="18" end="20">
+     <semantics PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="1.0" include="0.0" comments="0.0"/>
+    </occ>
+   </occs>
+  </feature>
+  <feature uid="6" file="/home/miniztree/C-Development/CList_split/___FeatureCoPP_modules/6.fcp" requested="true">
+   <expr><![CDATA[defined(WIN32)]]></expr>
+   <sem_avg PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="1.0" include="0.0" comments="0.0" />
+   <sem_dev PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="0.0" include="0.0" comments="0.0" />
+   <occs count="1" dead="0" valid="1">
+    <occ id="21" status="valid" file="/home/miniztree/C-Development/CList/src/main.c" keyword="#if" encl_occ_id="0" begin="16" end="18">
+     <semantics PSPOT="0.00" CS="0.00" ER="0.00" funcdefs="0.0" totaldecls="0.0" funcdecls="0.0" structdecls="0.0" vardecls="0.0" symtotal="0.0" symbound="0.0" symunbound="0.0" stmts="0.0" exprs="0.0" funcalls="0.0" cppdir="1.0" include="0.0" comments="0.0"/>
+    </occ>
+   </occs>
+  </feature>
+ </features>
+</fcreport>
