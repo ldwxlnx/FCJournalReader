@@ -91,7 +91,8 @@ public class ProjectStats {
 		int max_places_rank = Long.toString(n, 10).length();
 		int max_places_role_count = Long.toString(features.get(0).role_count)
 				.length();
-
+		sb.append("Abbreviations: #=rank, R=# of roles, .h/.c=occurrences in header/implementation files, D=dead, V=valid, ID=role id, r=requested, td=tangling degree, expr=feature expression");
+		sb.append(Configuration.LINESEP);
 		sb.append(String.format("%" + max_places_rank + "s %"
 				+ max_places_role_count + "s[%" + max_places_role_count + "s/%"
 				+ max_places_role_count + "s/%" + max_places_role_count + "s/%"
