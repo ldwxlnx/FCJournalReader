@@ -16,7 +16,7 @@ public class Role {
 		public static final String OUT_HEAD = "EXPR" + CSV_DELIM + "TD" + CSV_DELIM + "NDavg" + CSV_DELIM + "FID" + CSV_DELIM + "REQ";
 		// @formatter:on
 		public String toString() {
-			return featureExpr + CSV_DELIM + tanglingDegree + CSV_DELIM + ndAVG + CSV_DELIM + fuid + CSV_DELIM + (isRequested ? 1 : 0);
+			return "\"" + featureExpr + "\"" + CSV_DELIM + tanglingDegree + CSV_DELIM + ndAVG + CSV_DELIM + fuid + CSV_DELIM + (isRequested ? 1 : 0);
 		}
 		// FEATURE
 		public String featureExpr;
@@ -53,10 +53,9 @@ public class Role {
 	}
 	public static class Semantics {
 		// @formatter:off
-		public static final String OUT_HEAD = "PSPOT"
-				+ CSV_DELIM
-				// CS
-				+ "CS" + CSV_DELIM + "FDEF" + CSV_DELIM + "SDECL" + CSV_DELIM + "FDECL" + CSV_DELIM + "VDECL" + CSV_DELIM + "STMT" + CSV_DELIM + "COMM" + CSV_DELIM
+		public static final String OUT_HEAD = 
+				// SV
+				"SV" + CSV_DELIM + "FDEF" + CSV_DELIM + "SDECL" + CSV_DELIM + "FDECL" + CSV_DELIM + "VDECL" + CSV_DELIM + "STMT" + CSV_DELIM + "EXPR" + CSV_DELIM + "COMM" + CSV_DELIM
 				// ER
 				+ "ER" + CSV_DELIM + "SYMB" + CSV_DELIM + "SYMT" + CSV_DELIM + "FCALL" + CSV_DELIM
 				// MISC
@@ -65,9 +64,8 @@ public class Role {
 		@Override
 		public String toString() {
 			// @formatter:off
-			return pspot + ";"
-					// CS
-					+ cs + CSV_DELIM + funcdefs + CSV_DELIM + structdecls + CSV_DELIM + funcdecls + CSV_DELIM + vardecls + CSV_DELIM + stmts + CSV_DELIM + comments + CSV_DELIM
+					// SV
+					return sv + "" + CSV_DELIM + funcdefs + CSV_DELIM + structdecls + CSV_DELIM + funcdecls + CSV_DELIM + vardecls + CSV_DELIM + stmts + CSV_DELIM + exprs + CSV_DELIM + comments + CSV_DELIM
 					// ER
 					+ er + CSV_DELIM + symBound + CSV_DELIM + symTotal + CSV_DELIM + funcalls + CSV_DELIM
 					// MISC
@@ -75,13 +73,14 @@ public class Role {
 			// @formatter:on
 		}
 
-		public double pspot;
-		public double cs;
+
+		public double sv;
 		public double funcdefs;
 		public double structdecls;
 		public double funcdecls;
 		public double vardecls;
 		public double stmts;
+		public double exprs;
 		public double comments;
 		public double er;
 		public double symTotal;
@@ -103,7 +102,7 @@ public class Role {
 		// @formatter:off
 		return sem.toString() + CSV_DELIM
 				// ROLE
-				+ "\"" + srcFile + "\""+ CSV_DELIM + uid + CSV_DELIM + nd + CSV_DELIM + beginLine + CSV_DELIM + endLine + CSV_DELIM
+				+ srcFile + CSV_DELIM + uid + CSV_DELIM + nd + CSV_DELIM + beginLine + CSV_DELIM + endLine + CSV_DELIM
 				// FEATURE
 				+ feature.toString();
 		// @formatter:on

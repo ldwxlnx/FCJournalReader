@@ -4,20 +4,20 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 import de.ovgu.spldev.featurecopp.xml.IXMLParser;
-import de.ovgu.spldev.featurecopp.xml.IXMLParser.PSPOTCandidate;
+import de.ovgu.spldev.featurecopp.xml.IXMLParser.SVCandidate;
 import de.ovgu.spldev.featurecopp.xml.IXMLParser.XMLParserException;
 import de.ovgu.spldev.featurecopp.xml.stax.FCJStaXParser;
 
 public class MainProgram {
 	
 	public static void usage() {
-		System.out.println("FCJR.jar <FeatureCoPP_report.xml> <csvfile> --pspot=<good|bad|ugly|all|gbg> [<N>]");
-		System.out.println("\tCreates CSV file excerpt by given pspot-filter");
+		System.out.println("FCJR.jar <FeatureCoPP_report.xml> <csvfile> --sv=<good|bad|ugly|all|gbg> [<N>]");
+		System.out.println("\tCreates CSV file excerpt by given sv-filter");
 		System.out.println("\tN denotes the output of top-n-features based on their occurrences/roles (standard=10)");
 	}
 	
 	/*
-	 * <semantics PSPOT="0.52" CS="0.52" ER="0.00"
+	 * <semantics SV="0.52" ER="0.00"
 	 * funcdefs="0.0" totaldecls="2.0" funcdecls="1.0"
 	 * structdecls="0.0" vardecls="1.0" symtotal="0.0"
 	 * symbound="0.0" symunbound="0.0" stmts="0.0"
@@ -40,29 +40,34 @@ public class MainProgram {
 				usage();
 				System.exit(1);
 			}
-			String pspot_val = split_args[1];
-			PSPOTCandidate filter = PSPOTCandidate.GOOD;
-			switch(pspot_val) {
-			case "good":
-				break;
-			case "bad":
-				filter = PSPOTCandidate.BAD;
-				break;
-			case "ugly":
-				filter = PSPOTCandidate.UGLY;
-				break;
-			case "all":
-				filter = PSPOTCandidate.ALL;
-				break;
-			case "gbg":
-				filter = PSPOTCandidate.GOODBADGOOD;
-				break;
-			default:
-				System.err.println("Invalid pspot (" + pspot_val + ")! Refusing..." );
+			if(! "--sv".equals(split_args[0])) {
+				System.out.println("Unknown option " + split_args[0] + "! Refusing...");
 				usage();
 				System.exit(1);
 			}
-			System.out.println("Searching pspot=" + filter);
+			String sv_val = split_args[1];
+			SVCandidate filter = SVCandidate.GOOD;
+			switch(sv_val) {
+			case "good":
+				break;
+			case "bad":
+				filter = SVCandidate.BAD;
+				break;
+			case "ugly":
+				filter = SVCandidate.UGLY;
+				break;
+			case "all":
+				filter = SVCandidate.ALL;
+				break;
+			case "gbg":
+				filter = SVCandidate.GOODBADGOOD;
+				break;
+			default:
+				System.err.println("Invalid sv (" + sv_val + ")! Refusing..." );
+				usage();
+				System.exit(1);
+			}
+			System.out.println("Searching sv=" + filter);
 			PrintStream csvStrm = new PrintStream(args[1]);
 			IXMLParser xmlParser = IXMLParser.createXMLParser(args[0], csvStrm, filter);
 			xmlParser.parse();

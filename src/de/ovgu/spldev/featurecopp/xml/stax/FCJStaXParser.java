@@ -16,7 +16,7 @@ import de.ovgu.spldev.featurecopp.xml.IXMLParser;
 public class FCJStaXParser extends IXMLParser {
 
 	public FCJStaXParser(final String fileName, final PrintStream strm,
-			IXMLParser.PSPOTCandidate filter) throws FileNotFoundException,
+			IXMLParser.SVCandidate filter) throws FileNotFoundException,
 			XMLStreamException {
 		super(strm, filter);
 		// stored for reparse
@@ -230,13 +230,13 @@ public class FCJStaXParser extends IXMLParser {
 			String key = xmlParser.getAttributeLocalName(i);
 			String val = xmlParser.getAttributeValue(i);
 			switch(key) {
-			case"PSPOT": {
-				Double pspot = Double.parseDouble(val);
-				if (pspot == 0) {
+			case"SV": {
+				Double sv = Double.parseDouble(val);
+				if (sv == 0) {
 					super.projStats.ugly_count++;
-				} else if (0 < pspot && pspot < 1) {
+				} else if (0 < sv && sv < 10) {
 					super.projStats.bad_count++;
-				} else if (pspot >= 1) {
+				} else if (sv >= 10) {
 					super.projStats.good_count++;
 				} else {
 					super.projStats.missed_count++;
@@ -244,35 +244,31 @@ public class FCJStaXParser extends IXMLParser {
 				// roles are collected only if meeting interval criteria of pspot
 				switch (super.filter) {
 				case GOOD:
-					if (pspot < 1) {
+					if (sv < 10) {
 						return;
 					}
 					break;
 				case GOODBADGOOD:
-					if(pspot < 0.75) {
+					if(sv < 7.5) {
 						return;
 					}
 					break;
 				case BAD:
-					if (0 == pspot || 1 <= pspot) {
+					if (0 == sv || 10 <= sv) {
 						return;
 					}
 					break;
 				case UGLY:
-					if (pspot != 0) {
+					if (sv != 0) {
 						return;
 					}
 					break;
 				case ALL:
 				default:
 				}
-				currRole.sem.pspot = pspot;
+				currRole.sem.sv = sv;
 				break;
-			}
-			// CS
-			case "CS":
-				currRole.sem.cs = Double.parseDouble(val);
-				break;				
+			}			
 			case "funcdefs":
 				currRole.sem.funcdefs = Double.parseDouble(val);
 				break;
@@ -287,6 +283,9 @@ public class FCJStaXParser extends IXMLParser {
 				break;
 			case "stmts":
 				currRole.sem.stmts = Double.parseDouble(val);
+				break;
+			case "exprs":
+				currRole.sem.exprs = Double.parseDouble(val);
 				break;
 			case "comments":
 				currRole.sem.comments = Double.parseDouble(val);

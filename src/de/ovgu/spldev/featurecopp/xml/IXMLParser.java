@@ -11,12 +11,12 @@ import de.ovgu.spldev.featurecopp.xml.stax.FCJStaXParser;
 
 public abstract class IXMLParser {
 
-	public static enum PSPOTCandidate {
+	public static enum SVCandidate {
 		GOOD, BAD, UGLY, ALL, GOODBADGOOD//[0.75,2.0]
 	};
 
 	public static IXMLParser createXMLParser(String xmlFile, PrintStream strm,
-			PSPOTCandidate filter) throws XMLParserException {
+			SVCandidate filter) throws XMLParserException {
 		IXMLParser xmlParser = null;
 		try {
 			xmlParser = new FCJStaXParser(xmlFile, strm, filter);
@@ -47,9 +47,9 @@ public abstract class IXMLParser {
 		}
 	}
 
-	public IXMLParser(PrintStream strm, PSPOTCandidate filter) {
+	public IXMLParser(PrintStream strm, SVCandidate filter) {
 		this.strm = strm == null ? System.out : strm;
-		this.filter = filter == null ? PSPOTCandidate.GOOD : filter;
+		this.filter = filter == null ? SVCandidate.GOOD : filter;
 		this.projStats = new ProjectStats();
 	}
 
@@ -63,6 +63,6 @@ public abstract class IXMLParser {
 		projStats = new ProjectStats();
 	}
 	protected ProjectStats projStats;
-	protected PSPOTCandidate filter;
+	protected SVCandidate filter;
 	protected PrintStream strm;
 }

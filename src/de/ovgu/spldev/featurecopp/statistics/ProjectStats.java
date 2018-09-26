@@ -16,8 +16,8 @@ public class ProjectStats {
 		StringBuilder featureRank = new StringBuilder();
 		topNFeaturesToString(featureRank, Configuration.SHOW_TOP_N_FEATURES);
 		// @formatter:off
-		return "PSPOT DIST:" + Configuration.LINESEP
-				+ "\t[1,2]=" + good_count + ";(0,1)=" + bad_count + ";0="
+		return "SV DIST:" + Configuration.LINESEP
+				+ "\t[10,Inf]=" + good_count + ";(0,10)=" + bad_count + ";0="
 				+ ugly_count + ";missed=" + missed_count + ";total=" + (good_count + bad_count + ugly_count) + Configuration.LINESEP
 				+ "CONDITIONALS: " + Configuration.LINESEP
 				+ "\tif=" + if_count + ";ifdef=" + ifdef_count + ";ifndef=" + ifndef_count + ";total=" + (if_count + ifdef_count + ifndef_count) + Configuration.LINESEP
