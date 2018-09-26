@@ -13,14 +13,15 @@ public class Role {
 	public static final char CSV_DELIM = ';';
 	public static class Feature implements Comparable<Feature> {
 		// @formatter:off
-		public static final String OUT_HEAD = "EXPR" + CSV_DELIM + "TD" + CSV_DELIM + "FID" + CSV_DELIM + "REQ";
+		public static final String OUT_HEAD = "EXPR" + CSV_DELIM + "TD" + CSV_DELIM + "NDavg" + CSV_DELIM + "FID" + CSV_DELIM + "REQ";
 		// @formatter:on
 		public String toString() {
-			return featureExpr + + CSV_DELIM + tanglingDegree + CSV_DELIM + fuid + CSV_DELIM + (isRequested ? 1 : 0);
+			return featureExpr + CSV_DELIM + tanglingDegree + CSV_DELIM + ndAVG + CSV_DELIM + fuid + CSV_DELIM + (isRequested ? 1 : 0);
 		}
 		// FEATURE
 		public String featureExpr;
 		public int tanglingDegree;
+		public double ndAVG;
 		public long fuid;
 		public boolean isRequested;
 		public long role_count;
@@ -92,7 +93,7 @@ public class Role {
 	// @formatter:off
 	public static final String OUT_HEAD = Semantics.OUT_HEAD + CSV_DELIM
 			// ROLE
-			+ "SRC" + CSV_DELIM + "RID" + CSV_DELIM + "BEGIN" + CSV_DELIM + "END" + CSV_DELIM
+			+ "SRC" + CSV_DELIM + "RID" + CSV_DELIM + "ND" + CSV_DELIM + "BEGIN" + CSV_DELIM + "END" + CSV_DELIM
 			// FEATURE
 			+ Feature.OUT_HEAD;
 	// @formatter:on
@@ -102,7 +103,7 @@ public class Role {
 		// @formatter:off
 		return sem.toString() + CSV_DELIM
 				// ROLE
-				+ srcFile + CSV_DELIM + uid + CSV_DELIM + beginLine + CSV_DELIM + endLine + CSV_DELIM
+				+ "\"" + srcFile + "\""+ CSV_DELIM + uid + CSV_DELIM + nd + CSV_DELIM + beginLine + CSV_DELIM + endLine + CSV_DELIM
 				// FEATURE
 				+ feature.toString();
 		// @formatter:on
@@ -112,8 +113,9 @@ public class Role {
 	// ROLE
 	public String srcFile;
 	public double uid;
+	public int nd;
 	public double beginLine;
-	public double endLine;
+	public double endLine;	
 	// FEATURE
 	public Feature feature;
 }

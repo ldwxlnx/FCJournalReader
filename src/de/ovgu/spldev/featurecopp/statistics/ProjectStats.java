@@ -91,12 +91,12 @@ public class ProjectStats {
 		int max_places_rank = Long.toString(n, 10).length();
 		int max_places_role_count = Long.toString(features.get(0).role_count)
 				.length();
-		sb.append("Abbreviations: #=rank, R=# of roles, .h/.c=occurrences in header/implementation files, D=dead, V=valid, ID=role id, r=requested, td=tangling degree, expr=feature expression");
+		sb.append("Abbreviations: #=rank, R=# of roles, .h/.c=occurrences in header/implementation files, D=dead, V=valid, ID=role id, r=requested, td=tangling degree, ndavg=average nesting depth, expr=feature expression");
 		sb.append(Configuration.LINESEP);
-		sb.append(String.format("%" + max_places_rank + "s %"
+		sb.append(String.format(Locale.US, "%" + max_places_rank + "s %"
 				+ max_places_role_count + "s[%" + max_places_role_count + "s/%"
 				+ max_places_role_count + "s/%" + max_places_role_count + "s/%"
-				+ max_places_role_count + "s] %6s r td [expr]"
+				+ max_places_role_count + "s] %6s r td ndavg [expr]"
 				+ Configuration.LINESEP, "#", "R", ".h", ".c", "D", "V", "ID"));
 
 		for (int i = 0; i < features.size(); i++) {
@@ -105,13 +105,13 @@ public class ProjectStats {
 			}
 
 			Role.Feature curr = features.get(i);
-			sb.append(String.format("%" + max_places_rank + "d %"
+			sb.append(String.format(Locale.US, "%" + max_places_rank + "d %"
 					+ max_places_role_count + "d[%" + max_places_role_count
 					+ "d/%" + max_places_role_count + "d/%"
 					+ max_places_role_count + "d/%" + max_places_role_count
-					+ "d] %6d %c %2d [%s]" + Configuration.LINESEP, (i + 1),
+					+ "d] %6d %c %2d %.3f [%s]" + Configuration.LINESEP, (i + 1),
 					curr.role_count, curr.header_occs, curr.impl_occs, curr.dead_role_count, curr.valid_role_count,
-					curr.fuid, curr.isRequested ? 'Y' : 'N', curr.tanglingDegree, curr.featureExpr));
+					curr.fuid, curr.isRequested ? 'Y' : 'N', curr.tanglingDegree, curr.ndAVG, curr.featureExpr));
 		}
 	}
 

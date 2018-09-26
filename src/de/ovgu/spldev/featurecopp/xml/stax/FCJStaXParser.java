@@ -66,6 +66,9 @@ public class FCJStaXParser extends IXMLParser {
 					case "td":
 						parseTanglingDegree(currFeature);						
 						break;
+					case "ndavg":
+						parseAVGNestingDepth(currFeature);						
+						break;
 					// ROLE
 					case "occ": {
 						IXMLParser.overwriteProgressLine(++role_n, super.projStats.role_count,
@@ -167,6 +170,11 @@ public class FCJStaXParser extends IXMLParser {
 			currFeature.tanglingDegree = Integer.parseInt(xmlParser.getElementText());
 		}
 	}
+	private void parseAVGNestingDepth(Feature currFeature) throws NumberFormatException, XMLStreamException {
+		if (!xmlParser.isWhiteSpace()) {
+			currFeature.ndAVG = Double.parseDouble(xmlParser.getElementText());
+		}
+	}
 	
 	private void parseRoles(Role.Feature currFeature, int attribCount) {
 		for (int i = 0; i < attribCount; i++) {
@@ -206,6 +214,8 @@ public class FCJStaXParser extends IXMLParser {
 				currRole.srcFile = val;
 				currFeature.countOccByFileType(val);
 				super.projStats.addUniqueFile(val);
+			} else if(key == "nd") {
+				currRole.nd = Integer.parseInt(val);
 			} else if (key == "begin") {
 				currRole.beginLine = Integer.parseInt(val);
 			} else if (key == "end") {
