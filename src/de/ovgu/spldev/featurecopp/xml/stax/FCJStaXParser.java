@@ -16,8 +16,8 @@ import de.ovgu.spldev.featurecopp.xml.IXMLParser;
 public class FCJStaXParser extends IXMLParser {
 
 	public FCJStaXParser(final String fileName, final PrintStream strm,
-			IXMLParser.SVCandidate filter) throws FileNotFoundException,
-			XMLStreamException {
+			IXMLParser.SVCandidate filter)
+			throws FileNotFoundException, XMLStreamException {
 		super(strm, filter);
 		// stored for reparse
 		this.fileName = fileName;
@@ -64,15 +64,15 @@ public class FCJStaXParser extends IXMLParser {
 						parseRoles(currFeature, attribCount);
 						break;
 					case "td":
-						parseTanglingDegree(currFeature);						
+						parseTanglingDegree(currFeature);
 						break;
 					case "ndavg":
-						parseAVGNestingDepth(currFeature);						
+						parseAVGNestingDepth(currFeature);
 						break;
 					// ROLE
 					case "occ": {
-						IXMLParser.overwriteProgressLine(++role_n, super.projStats.role_count,
-								System.err);
+						IXMLParser.overwriteProgressLine(++role_n,
+								super.projStats.role_count, System.err);
 						currRole = parseRole(currFeature, attribCount);
 						break;
 					}
@@ -155,7 +155,9 @@ public class FCJStaXParser extends IXMLParser {
 				currFeature.isRequested = Boolean.parseBoolean(val);
 			}
 		}
-		projStats.addFeature(currFeature);
+		if (currFeature.isRequested) {
+			projStats.addFeature(currFeature);
+		}
 		return currFeature;
 	}
 
@@ -164,27 +166,31 @@ public class FCJStaXParser extends IXMLParser {
 			currFeature.featureExpr = xmlParser.getText();
 		}
 	}
-	
-	private void parseTanglingDegree(Feature currFeature) throws NumberFormatException, XMLStreamException {
+
+	private void parseTanglingDegree(Feature currFeature)
+			throws NumberFormatException, XMLStreamException {
 		if (!xmlParser.isWhiteSpace()) {
-			currFeature.tanglingDegree = Integer.parseInt(xmlParser.getElementText());
+			currFeature.tanglingDegree = Integer
+					.parseInt(xmlParser.getElementText());
 		}
 	}
-	private void parseAVGNestingDepth(Feature currFeature) throws NumberFormatException, XMLStreamException {
+
+	private void parseAVGNestingDepth(Feature currFeature)
+			throws NumberFormatException, XMLStreamException {
 		if (!xmlParser.isWhiteSpace()) {
 			currFeature.ndAVG = Double.parseDouble(xmlParser.getElementText());
 		}
 	}
-	
+
 	private void parseRoles(Role.Feature currFeature, int attribCount) {
 		for (int i = 0; i < attribCount; i++) {
 			String key = xmlParser.getAttributeLocalName(i);
 			String val = xmlParser.getAttributeValue(i);
 			if (key == "count") {
 				currFeature.role_count = Long.parseLong(val, 10);
-			} else if(key == "dead") {
+			} else if (key == "dead") {
 				currFeature.dead_role_count = Long.parseLong(val, 10);
-			} else if(key == "valid") {
+			} else if (key == "valid") {
 				currFeature.valid_role_count = Long.parseLong(val, 10);
 			}
 		}
@@ -192,10 +198,9 @@ public class FCJStaXParser extends IXMLParser {
 
 	private Role parseRole(Role.Feature currFeature, int attribCount) {
 		Role currRole = new Role(currFeature);
-		if(currFeature.isRequested) {
+		if (currFeature.isRequested) {
 			super.projStats.role_requested_count++;
-		}
-		else {
+		} else {
 			super.projStats.role_unrequested_count++;
 		}
 		for (int i = 0; i < attribCount; i++) {
@@ -214,7 +219,7 @@ public class FCJStaXParser extends IXMLParser {
 				currRole.srcFile = val;
 				currFeature.countOccByFileType(val);
 				super.projStats.addUniqueFile(val);
-			} else if(key == "nd") {
+			} else if (key == "nd") {
 				currRole.nd = Integer.parseInt(val);
 			} else if (key == "begin") {
 				currRole.beginLine = Integer.parseInt(val);
@@ -229,8 +234,8 @@ public class FCJStaXParser extends IXMLParser {
 		for (int i = 0; i < attribCount; i++) {
 			String key = xmlParser.getAttributeLocalName(i);
 			String val = xmlParser.getAttributeValue(i);
-			switch(key) {
-			case"SV": {
+			switch (key) {
+			case "SV": {
 				Double sv = Double.parseDouble(val);
 				if (sv == 0) {
 					super.projStats.ugly_count++;
@@ -241,7 +246,8 @@ public class FCJStaXParser extends IXMLParser {
 				} else {
 					super.projStats.missed_count++;
 				}
-				// roles are collected only if meeting interval criteria of pspot
+				// roles are collected only if meeting interval criteria of
+				// pspot
 				switch (super.filter) {
 				case GOOD:
 					if (sv < 10) {
@@ -249,7 +255,7 @@ public class FCJStaXParser extends IXMLParser {
 					}
 					break;
 				case GOODBADGOOD:
-					if(sv < 7.5) {
+					if (sv < 7.5) {
 						return;
 					}
 					break;
@@ -268,7 +274,7 @@ public class FCJStaXParser extends IXMLParser {
 				}
 				currRole.sem.sv = sv;
 				break;
-			}			
+			}
 			case "funcdefs":
 				currRole.sem.funcdefs = Double.parseDouble(val);
 				break;
@@ -315,18 +321,21 @@ public class FCJStaXParser extends IXMLParser {
 			} // switch(key)
 		} // for
 			// role completed -> write back
-		strm.println(currRole.toString());
-		strm.flush();
+		if (currRole.feature.isRequested) {
+			strm.println(currRole.toString());
+			strm.flush();
+		}
 	}
 
-	private void init(final String fileName) throws FileNotFoundException,
-			XMLStreamException {
+	private void init(final String fileName)
+			throws FileNotFoundException, XMLStreamException {
 		XMLInputFactory factory = XMLInputFactory.newInstance();
 		factory.setProperty(XMLInputFactory.IS_COALESCING, Boolean.FALSE);
 		xmlParser = factory
 				.createXMLStreamReader(new FileInputStream(fileName));
 		super.resetStatistics();
 	}
+
 	private String fileName;
 	private XMLStreamReader xmlParser;
 }
