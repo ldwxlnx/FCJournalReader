@@ -219,6 +219,8 @@ public class FCJStaXParser extends IXMLParser {
 				currRole.srcFile = val;
 				currFeature.countOccByFileType(val);
 				super.projStats.addUniqueFile(val);
+			} else if (key == "keyword") {
+				currRole.keyword = val;
 			} else if (key == "nd") {
 				currRole.nd = Integer.parseInt(val);
 			} else if (key == "begin") {

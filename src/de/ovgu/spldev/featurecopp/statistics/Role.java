@@ -74,7 +74,7 @@ public class Role {
 		}
 
 
-		public double sv;
+		public double sv;		
 		public double funcdefs;
 		public double structdecls;
 		public double funcdecls;
@@ -92,7 +92,7 @@ public class Role {
 	// @formatter:off
 	public static final String OUT_HEAD = Semantics.OUT_HEAD + CSV_DELIM
 			// ROLE
-			+ "SRC" + CSV_DELIM + "RID" + CSV_DELIM + "ND" + CSV_DELIM + "BEGIN" + CSV_DELIM + "END" + CSV_DELIM
+			+ "SRC" + CSV_DELIM + "RID" + CSV_DELIM + "KW" + CSV_DELIM + "ND" + CSV_DELIM + "BEGIN" + CSV_DELIM + "END" + CSV_DELIM
 			// FEATURE
 			+ Feature.OUT_HEAD;
 	// @formatter:on
@@ -102,7 +102,7 @@ public class Role {
 		// @formatter:off
 		return sem.toString() + CSV_DELIM
 				// ROLE
-				+ srcFile + CSV_DELIM + uid + CSV_DELIM + nd + CSV_DELIM + beginLine + CSV_DELIM + endLine + CSV_DELIM
+				+ srcFile + CSV_DELIM + uid + CSV_DELIM + keyword + CSV_DELIM + nd + CSV_DELIM + beginLine + CSV_DELIM + endLine + CSV_DELIM
 				// FEATURE
 				+ feature.toString();
 		// @formatter:on
@@ -112,6 +112,7 @@ public class Role {
 	// ROLE
 	public String srcFile;
 	public double uid;
+	public String keyword;
 	public int nd;
 	public double beginLine;
 	public double endLine;	
