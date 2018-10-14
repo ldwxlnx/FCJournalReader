@@ -45,6 +45,7 @@ public class MainProgram {
 				usage();
 				System.exit(1);
 			}
+			PrintStream logStream = new PrintStream(Configuration.LOGFILE);
 			String sv_val = split_args[1];
 			SVCandidate filter = SVCandidate.GOOD;
 			switch(sv_val) {
@@ -72,6 +73,9 @@ public class MainProgram {
 			IXMLParser xmlParser = IXMLParser.createXMLParser(args[0], csvStrm, filter);
 			xmlParser.parse();
 			System.out.println(xmlParser.psStatsToString());
+			logStream.println(xmlParser.psStatsToString());
+			logStream.flush();
+			logStream.close();
 			csvStrm.close();			
 		} catch (XMLParserException | FileNotFoundException e) {
 			System.err.println(e.getMessage());
