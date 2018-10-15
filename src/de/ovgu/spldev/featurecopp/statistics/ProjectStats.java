@@ -1,5 +1,6 @@
 package de.ovgu.spldev.featurecopp.statistics;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,9 +13,12 @@ public class ProjectStats {
 		initUniqueHeaderList();
 		initUniqueImplList();
 	}
+	public void toCSV(PrintStream csvStream) {
+		StringBuilder featureRank = topNFeaturesToString(Configuration.SHOW_TOP_N_FEATURES);
+		csvStream.println(featureRank);
+	}
 	public String toString() {
-		StringBuilder featureRank = new StringBuilder();
-		topNFeaturesToString(featureRank, Configuration.SHOW_TOP_N_FEATURES);
+		StringBuilder featureRank = topNFeaturesToString(Configuration.SHOW_TOP_N_FEATURES);
 		// @formatter:off
 		return "SV DIST:" + Configuration.LINESEP
 				+ "\t[10,Inf]=" + good_count + ";(0,10)=" + bad_count + ";0="
@@ -28,6 +32,7 @@ public class ProjectStats {
 				+ "FEATURES: " + Configuration.LINESEP
 				+ "\trequested=" + features_requested_count + ";total=" + feature_count + Configuration.LINESEP
 				+ "Top " + Configuration.SHOW_TOP_N_FEATURES + ":" + Configuration.LINESEP
+				+ "Abbreviations: #=rank, R=# of roles, .h/.c=occurrences in header/implementation files, D=dead, V=valid, ID=role id, r=requested, td=tangling degree, ndavg=average nesting depth, sv(avg/_s) = average/std deviation synt. volume, er(avg/_s) = average/std deviation encaps. ratio, expr=feature expression" + Configuration.LINESEP
 				+ featureRank.toString()
 				+ "ROLES:" + Configuration.LINESEP
 				+ "\trequested=" + role_requested_count + ";unrequested=" + role_unrequested_count + ";total=" + (role_requested_count + role_unrequested_count) + Configuration.LINESEP
@@ -85,34 +90,36 @@ public class ProjectStats {
 		}
 	}
 
-	private void topNFeaturesToString(StringBuilder sb, long n) {
+	private StringBuilder topNFeaturesToString(long n) {
+		StringBuilder sb = new StringBuilder();
 		Collections.sort(features);
 		Collections.reverse(features);
 		int max_places_rank = Long.toString(n, 10).length();
 		int max_places_role_count = Long.toString(features.get(0).role_count)
 				.length();
-		sb.append("Abbreviations: #=rank, R=# of roles, .h/.c=occurrences in header/implementation files, D=dead, V=valid, ID=role id, r=requested, td=tangling degree, ndavg=average nesting depth, expr=feature expression");
-		sb.append(Configuration.LINESEP);
+		//sb.append(Configuration.LINESEP);
 		sb.append(String.format(Locale.US, "%" + max_places_rank + "s %"
-				+ max_places_role_count + "s[%" + max_places_role_count + "s/%"
-				+ max_places_role_count + "s/%" + max_places_role_count + "s/%"
-				+ max_places_role_count + "s] %6s r td ndavg [expr]"
+				+ max_places_role_count + "s %" + max_places_role_count + "s %"
+				+ max_places_role_count + "s %" + max_places_role_count + "s %"
+				+ max_places_role_count + "s %6s r td ndavg svavg   sv_s   eravg  er_s \"expr\""
 				+ Configuration.LINESEP, "#", "R", ".h", ".c", "D", "V", "ID"));
-
 		for (int i = 0; i < features.size(); i++) {
 			if (i == n) {
-				return;
+				break;
 			}
 
 			Role.Feature curr = features.get(i);
 			sb.append(String.format(Locale.US, "%" + max_places_rank + "d %"
-					+ max_places_role_count + "d[%" + max_places_role_count
-					+ "d/%" + max_places_role_count + "d/%"
-					+ max_places_role_count + "d/%" + max_places_role_count
-					+ "d] %6d %c %2d %.3f [%s]" + Configuration.LINESEP, (i + 1),
+					+ max_places_role_count + "d %" + max_places_role_count
+					+ "d %" + max_places_role_count + "d %"
+					+ max_places_role_count + "d %" + max_places_role_count
+					+ "d %6d %c %2d %.2f %6.2f %6.2f %6.2f %6.2f \"%s\"" + Configuration.LINESEP, (i + 1),
 					curr.role_count, curr.header_occs, curr.impl_occs, curr.dead_role_count, curr.valid_role_count,
-					curr.fuid, curr.isRequested ? 'Y' : 'N', curr.tanglingDegree, curr.ndAVG, curr.featureExpr));
+					curr.fuid, curr.isRequested ? 'Y' : 'N', curr.tanglingDegree, curr.ndAVG,
+							curr.svAVG, curr.svSTDDEV, curr.erAVG, curr.erSTDDEV,
+							curr.featureExpr));
 		}
+		return sb;
 	}
 
 	/*

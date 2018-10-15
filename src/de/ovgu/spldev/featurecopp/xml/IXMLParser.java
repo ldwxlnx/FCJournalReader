@@ -58,6 +58,13 @@ public abstract class IXMLParser {
 	public String psStatsToString() {
 		return projStats.toString();
 	}
+	/** 
+	 * only feature list (whitespace separated, same as on stdout)
+	 * @param csvStream
+	 */
+	public void featureListToCSV(PrintStream csvStream) {
+		projStats.toCSV(csvStream);
+	}
 
 	protected void resetStatistics() {
 		projStats = new ProjectStats();

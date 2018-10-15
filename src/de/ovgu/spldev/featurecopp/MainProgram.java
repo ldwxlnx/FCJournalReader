@@ -70,12 +70,18 @@ public class MainProgram {
 			}
 			System.out.println("Searching sv=" + filter);
 			PrintStream csvStrm = new PrintStream(args[1]);
+			PrintStream featureCSV = new PrintStream("features.txt");
 			IXMLParser xmlParser = IXMLParser.createXMLParser(args[0], csvStrm, filter);
 			xmlParser.parse();
-			System.out.println(xmlParser.psStatsToString());
-			logStream.println(xmlParser.psStatsToString());
+			String resultString = xmlParser.psStatsToString();
+			xmlParser.featureListToCSV(featureCSV);
+			System.out.println(resultString);
+			logStream.println(resultString);
 			logStream.flush();
 			logStream.close();
+			featureCSV.flush();
+			featureCSV.close();
+			csvStrm.flush();
 			csvStrm.close();			
 		} catch (XMLParserException | FileNotFoundException e) {
 			System.err.println(e.getMessage());

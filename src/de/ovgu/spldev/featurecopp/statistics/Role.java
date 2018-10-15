@@ -22,6 +22,10 @@ public class Role {
 		public String featureExpr;
 		public int tanglingDegree;
 		public double ndAVG;
+		public double svAVG;
+		public double svSTDDEV;
+		public double erAVG;
+		public double erSTDDEV;
 		public long fuid;
 		public boolean isRequested;
 		public long role_count;

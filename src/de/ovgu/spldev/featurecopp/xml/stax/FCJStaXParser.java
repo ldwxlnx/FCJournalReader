@@ -69,6 +69,12 @@ public class FCJStaXParser extends IXMLParser {
 					case "ndavg":
 						parseAVGNestingDepth(currFeature);
 						break;
+					case "sem_avg":
+						parseSemanticAVG(currFeature, attribCount);
+						break;
+					case "sem_dev":
+						parseSemanticSTDDEV(currFeature, attribCount);
+						break;
 					// ROLE
 					case "occ": {
 						IXMLParser.overwriteProgressLine(++role_n,
@@ -143,7 +149,28 @@ public class FCJStaXParser extends IXMLParser {
 			}
 		}
 	}
-
+	private void parseSemanticAVG(Feature currFeature, int attribCount) {
+		for (int i = 0; i < attribCount; i++) {
+			String key = xmlParser.getAttributeLocalName(i);
+			String val = xmlParser.getAttributeValue(i);
+			if (key == "SV") {
+				currFeature.svAVG = Double.parseDouble(val);
+			} else if (key == "ER") {
+				currFeature.erAVG = Double.parseDouble(val);
+			}
+		}
+	}
+	private void parseSemanticSTDDEV(Feature currFeature, int attribCount) {
+		for (int i = 0; i < attribCount; i++) {
+			String key = xmlParser.getAttributeLocalName(i);
+			String val = xmlParser.getAttributeValue(i);
+			if (key == "SV") {
+				currFeature.svSTDDEV = Double.parseDouble(val);
+			} else if (key == "ER") {
+				currFeature.erSTDDEV = Double.parseDouble(val);
+			}
+		}
+	}
 	private Role.Feature parseFeature(int attribCount) {
 		Role.Feature currFeature = new Role.Feature();
 		for (int i = 0; i < attribCount; i++) {
