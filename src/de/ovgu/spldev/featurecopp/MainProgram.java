@@ -1,5 +1,6 @@
 package de.ovgu.spldev.featurecopp;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
@@ -11,9 +12,9 @@ import de.ovgu.spldev.featurecopp.xml.stax.FCJStaXParser;
 public class MainProgram {
 	
 	public static void usage() {
-		System.out.println("FCJR.jar <FeatureCoPP_report.xml> <csvfile> --sv=<good|bad|ugly|all|gbg> [<N>]");
-		System.out.println("\tCreates CSV file excerpt by given sv-filter");
-		System.out.println("\tN denotes the output of top-n-features based on their occurrences/roles (standard=10)");
+		System.out.println("FCJR.jar <FeatureCoPP_report.xml> <outdir> --sv=<good|bad|ugly|all|gbg> [<N>]");
+		System.out.println("\tCreates CSV/logs within outdir by given sv-filter");
+		System.out.println("\tN denotes the output of top-n-features based on their occurrences/roles (standard=Long.MAX_VALUE)");
 	}
 	
 	/*
@@ -45,7 +46,7 @@ public class MainProgram {
 				usage();
 				System.exit(1);
 			}
-			PrintStream logStream = new PrintStream(Configuration.LOGFILE);
+			
 			String sv_val = split_args[1];
 			SVCandidate filter = SVCandidate.GOOD;
 			switch(sv_val) {
@@ -69,8 +70,11 @@ public class MainProgram {
 				System.exit(1);
 			}
 			System.out.println("Searching sv=" + filter);
-			PrintStream csvStrm = new PrintStream(args[1]);
-			PrintStream featureCSV = new PrintStream("features.txt");
+			
+			Configuration.setOutfiles(new File(args[1]));
+			PrintStream logStream = new PrintStream(Configuration.LOGFILE);
+			PrintStream csvStrm = new PrintStream(Configuration.PROJCSV);
+			PrintStream featureCSV = new PrintStream(Configuration.FEATCSV);
 			IXMLParser xmlParser = IXMLParser.createXMLParser(args[0], csvStrm, filter);
 			xmlParser.parse();
 			String resultString = xmlParser.psStatsToString();
