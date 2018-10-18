@@ -91,8 +91,22 @@ public class FCJStaXParser extends IXMLParser {
 					} // switch (currElement)
 					break;
 				} // case XMLStreamConstants.START_ELEMENT:
-				case XMLStreamConstants.END_ELEMENT:
+				case XMLStreamConstants.END_ELEMENT: {
+					final String currElement = xmlParser.getLocalName();
+					switch (currElement) {
+					case "occ": {
+						// role completed -> write back
+						if (currRole.feature.isRequested) {
+							strm.println(currRole.toString());
+							strm.flush();
+						}
+						break;
+					}
+					default:
+						break;
+					}					
 					break;
+				}
 				// FEATURE EXPR //TODO not longer working since TD was added
 				case XMLStreamConstants.CDATA:
 				case XMLStreamConstants.CHARACTERS:
@@ -149,6 +163,7 @@ public class FCJStaXParser extends IXMLParser {
 			}
 		}
 	}
+
 	private void parseSemanticAVG(Feature currFeature, int attribCount) {
 		for (int i = 0; i < attribCount; i++) {
 			String key = xmlParser.getAttributeLocalName(i);
@@ -160,6 +175,7 @@ public class FCJStaXParser extends IXMLParser {
 			}
 		}
 	}
+
 	private void parseSemanticSTDDEV(Feature currFeature, int attribCount) {
 		for (int i = 0; i < attribCount; i++) {
 			String key = xmlParser.getAttributeLocalName(i);
@@ -171,6 +187,7 @@ public class FCJStaXParser extends IXMLParser {
 			}
 		}
 	}
+
 	private Role.Feature parseFeature(int attribCount) {
 		Role.Feature currFeature = new Role.Feature();
 		for (int i = 0; i < attribCount; i++) {
@@ -349,11 +366,6 @@ public class FCJStaXParser extends IXMLParser {
 				break;
 			} // switch(key)
 		} // for
-			// role completed -> write back
-		if (currRole.feature.isRequested) {
-			strm.println(currRole.toString());
-			strm.flush();
-		}
 	}
 
 	private void init(final String fileName)
