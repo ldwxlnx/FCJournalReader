@@ -168,8 +168,8 @@ public class FCJStaXParser extends IXMLParser {
 		for (int i = 0; i < attribCount; i++) {
 			String key = xmlParser.getAttributeLocalName(i);
 			String val = xmlParser.getAttributeValue(i);
-			if (key == "SV") {
-				currFeature.svAVG = Double.parseDouble(val);
+			if (key == "CS") {
+				currFeature.csAVG = Double.parseDouble(val);
 			} else if (key == "ER") {
 				currFeature.erAVG = Double.parseDouble(val);
 			}
@@ -180,8 +180,8 @@ public class FCJStaXParser extends IXMLParser {
 		for (int i = 0; i < attribCount; i++) {
 			String key = xmlParser.getAttributeLocalName(i);
 			String val = xmlParser.getAttributeValue(i);
-			if (key == "SV") {
-				currFeature.svSTDDEV = Double.parseDouble(val);
+			if (key == "CS") {
+				currFeature.csSTDDEV = Double.parseDouble(val);
 			} else if (key == "ER") {
 				currFeature.erSTDDEV = Double.parseDouble(val);
 			}
@@ -238,6 +238,9 @@ public class FCJStaXParser extends IXMLParser {
 				currFeature.valid_role_count = Long.parseLong(val, 10);
 			}
 		}
+		if(currFeature.dead_role_count == 1 && currFeature.valid_role_count == 0) {
+			
+		}
 	}
 
 	private Role parseRole(Role.Feature currFeature, int attribCount) {
@@ -281,46 +284,47 @@ public class FCJStaXParser extends IXMLParser {
 			String key = xmlParser.getAttributeLocalName(i);
 			String val = xmlParser.getAttributeValue(i);
 			switch (key) {
-			case "SV": {
-				Double sv = Double.parseDouble(val);
-				if (sv == 0) {
+			case "PSPOT": {
+				Double pspot = Double.parseDouble(val);
+				if (pspot == 0) {
 					super.projStats.ugly_count++;
-				} else if (0 < sv && sv < 10) {
+				} else if (0 < pspot && pspot < 1) {
 					super.projStats.bad_count++;
-				} else if (sv >= 10) {
+				} else if (1 <= pspot && pspot <= 2) {
 					super.projStats.good_count++;
-				} else {
-					super.projStats.missed_count++;
 				}
 				// roles are collected only if meeting interval criteria of
 				// pspot
 				switch (super.filter) {
 				case GOOD:
-					if (sv < 10) {
+					if (pspot < 1) {
 						return;
 					}
 					break;
 				case GOODBADGOOD:
-					if (sv < 7.5) {
+					if (pspot < 0) {
 						return;
 					}
 					break;
 				case BAD:
-					if (0 == sv || 10 <= sv) {
+					if (0 == pspot || 1 <= pspot) {
 						return;
 					}
 					break;
 				case UGLY:
-					if (sv != 0) {
+					if (pspot != 0) {
 						return;
 					}
 					break;
 				case ALL:
 				default:
 				}
-				currRole.sem.sv = sv;
+				currRole.sem.pspot = pspot;
 				break;
 			}
+			case "CS":
+				currRole.sem.cs = Double.parseDouble(val);
+				break;
 			case "funcdefs":
 				currRole.sem.funcdefs = Double.parseDouble(val);
 				break;

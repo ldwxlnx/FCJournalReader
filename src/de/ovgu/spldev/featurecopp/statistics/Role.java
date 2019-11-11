@@ -22,8 +22,10 @@ public class Role {
 		public String featureExpr;
 		public int tanglingDegree;
 		public double ndAVG;
-		public double svAVG;
-		public double svSTDDEV;
+//		public double pspotAVG;
+//		public double pspotSTDDEV;
+		public double csAVG;
+		public double csSTDDEV;
 		public double erAVG;
 		public double erSTDDEV;
 		public long fuid;
@@ -57,9 +59,11 @@ public class Role {
 	}
 	public static class Semantics {
 		// @formatter:off
-		public static final String OUT_HEAD = 
-				// SV
-				"SV" + CSV_DELIM + "FDEF" + CSV_DELIM + "SDECL" + CSV_DELIM + "FDECL" + CSV_DELIM + "VDECL" + CSV_DELIM + "STMT" + CSV_DELIM + "EXPR" + CSV_DELIM + "COMM" + CSV_DELIM
+		public static final String OUT_HEAD =
+				// PSPOT
+				"PSPOT" + CSV_DELIM +
+				// CS
+				"CS" + CSV_DELIM + "FDEF" + CSV_DELIM + "SDECL" + CSV_DELIM + "FDECL" + CSV_DELIM + "VDECL" + CSV_DELIM + "STMT" + CSV_DELIM + "EXPR" + CSV_DELIM + "COMM" + CSV_DELIM
 				// ER
 				+ "ER" + CSV_DELIM + "SYMB" + CSV_DELIM + "SYMT" + CSV_DELIM + "FCALL" + CSV_DELIM
 				// MISC
@@ -68,8 +72,9 @@ public class Role {
 		@Override
 		public String toString() {
 			// @formatter:off
-					// SV
-					return sv + "" + CSV_DELIM + funcdefs + CSV_DELIM + structdecls + CSV_DELIM + funcdecls + CSV_DELIM + vardecls + CSV_DELIM + stmts + CSV_DELIM + exprs + CSV_DELIM + comments + CSV_DELIM
+				return pspot + "" + CSV_DELIM + 
+					// CS
+					cs + "" + CSV_DELIM + funcdefs + CSV_DELIM + structdecls + CSV_DELIM + funcdecls + CSV_DELIM + vardecls + CSV_DELIM + stmts + CSV_DELIM + exprs + CSV_DELIM + comments + CSV_DELIM
 					// ER
 					+ er + CSV_DELIM + symBound + CSV_DELIM + symTotal + CSV_DELIM + funcalls + CSV_DELIM
 					// MISC
@@ -77,8 +82,8 @@ public class Role {
 			// @formatter:on
 		}
 
-
-		public double sv;		
+		public double pspot;
+		public double cs;		
 		public double funcdefs;
 		public double structdecls;
 		public double funcdecls;

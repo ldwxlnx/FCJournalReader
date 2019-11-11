@@ -20,9 +20,9 @@ public class ProjectStats {
 	public String toString() {
 		StringBuilder featureRank = topNFeaturesToString(Configuration.SHOW_TOP_N_FEATURES);
 		// @formatter:off
-		return "SV DIST:" + Configuration.LINESEP
-				+ "\t[10,Inf]=" + good_count + ";(0,10)=" + bad_count + ";0="
-				+ ugly_count + ";missed=" + missed_count + ";total=" + (good_count + bad_count + ugly_count) + Configuration.LINESEP
+		return "PSPOT:" + Configuration.LINESEP
+				+ "\t[1,2]=" + good_count + ";(0,1)=" + bad_count + ";0="
+				+ ugly_count + ";total=" + (good_count + bad_count + ugly_count) + Configuration.LINESEP
 				+ "CONDITIONALS: " + Configuration.LINESEP
 				+ "\tif=" + if_count + ";ifdef=" + ifdef_count + ";ifndef=" + ifndef_count + ";total=" + (if_count + ifdef_count + ifndef_count) + Configuration.LINESEP
 				+ "\telif=" + elif_count + Configuration.LINESEP
@@ -101,7 +101,7 @@ public class ProjectStats {
 		sb.append(String.format(Locale.US, "%" + max_places_rank + "s %"
 				+ max_places_role_count + "s %" + max_places_role_count + "s %"
 				+ max_places_role_count + "s %" + max_places_role_count + "s %"
-				+ max_places_role_count + "s %6s r td ndavg svavg   sv_s   eravg  er_s \"expr\""
+				+ max_places_role_count + "s %6s r td ndavg csavg   cs_s   eravg  er_s \"expr\""
 				+ Configuration.LINESEP, "#", "R", ".h", ".c", "D", "V", "ID"));
 		for (int i = 0; i < features.size(); i++) {
 			if (i == n) {
@@ -116,7 +116,7 @@ public class ProjectStats {
 					+ "d %6d %c %2d %.2f %6.2f %6.2f %6.2f %6.2f \"%s\"" + Configuration.LINESEP, (i + 1),
 					curr.role_count, curr.header_occs, curr.impl_occs, curr.dead_role_count, curr.valid_role_count,
 					curr.fuid, curr.isRequested ? 'Y' : 'N', curr.tanglingDegree, curr.ndAVG,
-							curr.svAVG, curr.svSTDDEV, curr.erAVG, curr.erSTDDEV,
+							curr.csAVG, curr.csSTDDEV, curr.erAVG, curr.erSTDDEV,
 							curr.featureExpr));
 		}
 		return sb;
